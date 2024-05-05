@@ -1,3 +1,8 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://eki.cat/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'eki.cat'
+theme = "compose"
+
+[params.logo]
+    lightMode = "logo.png"
+    darkMode = "logo.png"
