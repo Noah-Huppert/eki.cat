@@ -1,8 +1,0 @@
-baseURL = 'https://eki.cat/'
-languageCode = 'en-us'
-title = 'eki.cat'
-theme = "compose"
-
-[params.logo]
-    lightMode = "logo.png"
-    darkMode = "logo.png"
