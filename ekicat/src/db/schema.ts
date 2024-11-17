@@ -48,6 +48,12 @@ export const node = pgTable("nodes", {
     locationId: integer().notNull().references(() => location.id),
 });
 
+export const nodeEdge = pgTable("node_edges", {
+    id: integer().primaryKey(),
+    originNodeId: integer().notNull(),
+    targetNodeId: integer().notNull(),
+});
+
 export const nodeRelations = relations(node, ({ one, many }) => ({
     location: one(location),
     nodeMediaBlobs: many(nodeMediaBlob),
