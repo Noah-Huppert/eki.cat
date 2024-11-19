@@ -1,5 +1,5 @@
 {
-  "id": "cbf1e960-eadb-4cc4-a862-38e252d1bbc1",
+  "id": "e9e345d3-7440-4465-9cef-391123dbf6b9",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -45,27 +45,27 @@
           "primaryKey": false,
           "notNull": true
         },
-        "createdAt": {
-          "name": "createdAt",
+        "created_at": {
+          "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true
         },
-        "recordedAt": {
-          "name": "recordedAt",
+        "recorded_at": {
+          "name": "recorded_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true
         },
-        "recordedAtAccuracy": {
-          "name": "recordedAtAccuracy",
+        "recorded_at_accuracy": {
+          "name": "recorded_at_accuracy",
           "type": "timestamp_accuracy",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": true
         },
-        "mimeType": {
-          "name": "mimeType",
+        "mime_type": {
+          "name": "mime_type",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -94,21 +94,34 @@
           "type": "integer",
           "primaryKey": true,
           "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.node_edges": {
+      "name": "node_edges",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
         },
-        "pathId": {
-          "name": "pathId",
-          "type": "text",
+        "source_node_id": {
+          "name": "source_node_id",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
-        "path": {
-          "name": "path",
-          "type": "ltree",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "locationId": {
-          "name": "locationId",
+        "target_node_id": {
+          "name": "target_node_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
@@ -116,12 +129,25 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "nodes_locationId_locations_id_fk": {
-          "name": "nodes_locationId_locations_id_fk",
-          "tableFrom": "nodes",
-          "tableTo": "locations",
+        "node_edges_source_node_id_nodes_id_fk": {
+          "name": "node_edges_source_node_id_nodes_id_fk",
+          "tableFrom": "node_edges",
+          "tableTo": "nodes",
           "columnsFrom": [
-            "locationId"
+            "source_node_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "node_edges_target_node_id_nodes_id_fk": {
+          "name": "node_edges_target_node_id_nodes_id_fk",
+          "tableFrom": "node_edges",
+          "tableTo": "nodes",
+          "columnsFrom": [
+            "target_node_id"
           ],
           "columnsTo": [
             "id"
@@ -130,6 +156,37 @@
           "onUpdate": "no action"
         }
       },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.node_locations": {
+      "name": "node_locations",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "node_id": {
+          "name": "node_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},
@@ -146,14 +203,14 @@
           "primaryKey": true,
           "notNull": true
         },
-        "nodeId": {
-          "name": "nodeId",
+        "node_id": {
+          "name": "node_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
-        "mediaBlobId": {
-          "name": "mediaBlobId",
+        "media_blob_id": {
+          "name": "media_blob_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
@@ -161,12 +218,12 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "node_media_blobs_nodeId_nodes_id_fk": {
-          "name": "node_media_blobs_nodeId_nodes_id_fk",
+        "node_media_blobs_node_id_nodes_id_fk": {
+          "name": "node_media_blobs_node_id_nodes_id_fk",
           "tableFrom": "node_media_blobs",
           "tableTo": "nodes",
           "columnsFrom": [
-            "nodeId"
+            "node_id"
           ],
           "columnsTo": [
             "id"
@@ -174,12 +231,12 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "node_media_blobs_mediaBlobId_media_blobs_id_fk": {
-          "name": "node_media_blobs_mediaBlobId_media_blobs_id_fk",
+        "node_media_blobs_media_blob_id_media_blobs_id_fk": {
+          "name": "node_media_blobs_media_blob_id_media_blobs_id_fk",
           "tableFrom": "node_media_blobs",
           "tableTo": "media_blobs",
           "columnsFrom": [
-            "mediaBlobId"
+            "media_blob_id"
           ],
           "columnsTo": [
             "id"
