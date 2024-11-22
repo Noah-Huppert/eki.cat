@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+import { withTRPC } from "@trpc/next";
+import { AppType } from "next/dist/shared/lib/utils";
 import localFont from "next/font/local";
 import Link from "next/link";
 import "./globals.css";
+
+import { AppRouter } from "@/api/trpc/trpc";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,7 +23,7 @@ export const metadata: Metadata = {
   description: "Trains",
 };
 
-export default function RootLayout({
+function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -39,10 +43,10 @@ export default function RootLayout({
             </Link>
 
             <Link
-              href="/photos"
+              href="/nodes"
               className="self-center"
             >
-              Photos
+              Nodes
             </Link>
           </nav>
         </header>
@@ -54,3 +58,24 @@ export default function RootLayout({
     </html>
   );
 }
+
+export default withTRPC<AppRouter>({
+  config({ ctx }) {
+    /**
+     * If you want to use SSR, you need to use the server's full URL
+     * @see https://trpc.io/docs/ssr
+     */
+    const url = process.env.TRPC_URL || 'http://localhost:3000/api/trpc';
+    return {
+      url,
+      /**
+       * @see https://tanstack.com/query/v3/docs/react/reference/QueryClient
+       */
+      // queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
+    };
+  },
+  /**
+   * @see https://trpc.io/docs/ssr
+   */
+  ssr: true,
+})(RootLayout);
