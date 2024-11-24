@@ -11,18 +11,12 @@
     "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.61.0",
-    "@trpc/client": "^11.0.0-rc.638",
-    "@trpc/next": "^11.0.0-rc.638",
-    "@trpc/react-query": "^11.0.0-rc.638",
-    "@trpc/server": "^11.0.0-rc.638",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.3",
     "next": "15.0.3",
     "pg": "^8.13.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-query": "^3.39.3",
     "zod": "^3.23.8"
   },
   "devDependencies": {
