@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 const configShape = z.object({
     dbUri: z.string().default("postgres://ekicatdev:ekicatdev@localhost/ekicatdev"),
+    trpcPort: z.number().default(3000),
 });
 export type Config = z.infer<typeof configShape>;
 

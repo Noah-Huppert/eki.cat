@@ -22,6 +22,10 @@ Nextjs is used along side Docker compose which runs a local Postgres.
    ```shell
    npm run db:migrate
    ```
+5. Start a dev server:
+   ```shell
+   npm run dev
+   ```
 
 After changing schemas run `npm run db:generate`
 

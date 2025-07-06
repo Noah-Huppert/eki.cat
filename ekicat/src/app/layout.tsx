@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { withTRPC } from "@trpc/next";
-import { AppType } from "next/dist/shared/lib/utils";
+import { z } from "zod";
+/* import { AppType } from "next/dist/shared/lib/utils"; */
 import localFont from "next/font/local";
 import Link from "next/link";
 import "./globals.css";
 
-import { AppRouter } from "@/api/trpc/trpc";
+import { procedure, router } from "@/api/trpc/trpc";
+import { NodeService } from "@/api/services/node";
+
+const nodeSvc = new NodeService();
+
+/* import { AppRouter } from "@/api/trpc/trpc"; */
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -58,6 +63,22 @@ function RootLayout({
     </html>
   );
 }
+
+export const appRouter = router({
+  listNodes: procedure.query((opts) => {
+    return nodeSvc.listNodes();
+  }),
+});
+
+export type AppRouter = typeof appRouter;
+
+// export type definition of API
+export type AppRouter = typeof appRouter;
+// export API handler
+export default trpcNext.createNextApiHandler({
+  router: appRouter,
+  createContext: () => null,
+});
 
 export default withTRPC<AppRouter>({
   config({ ctx }) {

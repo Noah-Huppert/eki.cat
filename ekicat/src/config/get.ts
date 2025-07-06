@@ -1,3 +1,3 @@
-import { LoadConfig } from "@/config";
+import { LoadConfig } from "config";
 
 export const cfg = LoadConfig();
