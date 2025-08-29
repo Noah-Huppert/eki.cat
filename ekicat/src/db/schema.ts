@@ -103,7 +103,7 @@ export const nodeLocationRelations = relations(nodeLocation, ({ one }) => ({
         fields: [nodeLocation.nodeId],
         references: [node.id],
     }),
-    location: one(node, {
+    location: one(location, {
         fields: [nodeLocation.locationId],
         references: [location.id],
     }),
