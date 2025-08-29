@@ -28,9 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background fg-foreground`}
       >
-        <header className="bg-background fg-foreground flex flex-row px-4">
+        <header className="flex flex-row px-4">
           <nav className="flex flex-row grow h-14">
             <Link
               href="/"
