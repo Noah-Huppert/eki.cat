@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description: "Trains",
 };
 
-function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
