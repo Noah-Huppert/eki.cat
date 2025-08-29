@@ -2,6 +2,6 @@ import { db } from "@/db";
 
 export class NodeService {
     async listNodes() {
-        return db.query.nodeEdges.findMany();
+        return db.query.node.findMany();
     }
 }
