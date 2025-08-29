@@ -2,21 +2,23 @@
 🚆🐈
 
 # Development
-Nextjs is used along side Docker compose which runs a local Postgres.
+Nextjs and Postgres are used. Docker compose which runs both.
 
-1. Start local Postgres:
+Change to the `ekicat/` directory, then:
+
+1. Install NodeJS dependencies:
+   ```shell
+   npm install
+   ```
+2. Start Docker Compose
 
    ``` shell
    docker compose up -d
    ```
-2. Run psql in docker compose in order to follow the [Database Setup instructions](#database-setup):
+3. Run psql in docker compose in order to follow the [Database Setup instructions](#database-setup):
 
    ``` shell
    ./scripts/psql.sh -f /app/scripts/pg-setup.sql
-   ```
-3. Install node dependencies:
-   ```shell
-   npm install
    ```
 4. Migrate the dev database:
    ```shell

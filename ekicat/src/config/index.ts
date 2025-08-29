@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const configShape = z.object({
-    dbUri: z.string().default("postgres://ekicatdev:ekicatdev@localhost/ekicatdev"),
+    dbUri: z.string().default("postgres://ekicatdev:ekicatdev@postgres:5432/ekicatdev"),
 });
 export type Config = z.infer<typeof configShape>;
 
